@@ -249,23 +249,41 @@ namespace Assignment13_LINQ
 
             #region p14: Get the average price of each category's products.
 
-            var averagePrices = ListGenerators.ProductList
-                .GroupBy(p => p.Category)
-                .Select(g => new
-                {
-                    Category = g.Key,
-                    AveragePrice = g.Average(p => p.UnitPrice)
-                })
-                .ToList();
-            foreach (var item in averagePrices)
-            {
-                Console.WriteLine($"Average price in {item.Category} category: ${item.AveragePrice}");
-            }
+            //var averagePrices = ListGenerators.ProductList
+            //    .GroupBy(p => p.Category)
+            //    .Select(g => new
+            //    {
+            //        Category = g.Key,
+            //        AveragePrice = g.Average(p => p.UnitPrice)
+            //    })
+            //    .ToList();
+            //foreach (var item in averagePrices)
+            //{
+            //    Console.WriteLine($"Average price in {item.Category} category: ${item.AveragePrice}");
+            //}
 
 
             #endregion
 
 
+
+            // Set Operators
+
+            #region p1: Find the unique Category names from Product List
+
+            var uniqueCategories = ListGenerators.ProductList
+                .Select(p => p.Category)
+                .Distinct()
+                .OrderBy(c => c); 
+
+            foreach (var category in uniqueCategories)
+            {
+                Console.WriteLine(category);
+            }
+
+
+
+            #endregion
         }
     }
 }
