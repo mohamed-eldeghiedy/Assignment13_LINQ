@@ -597,15 +597,35 @@ namespace Assignment13_LINQ
             // Transformation Operators
 
             #region p1: Return a sequence of just the names of a list of products.
-            var productNames = ListGenerators.ProductList
-                .Select(p => p.ProductName)
-                .ToList();
-            Console.WriteLine("Product Names:");
-                
-            foreach (var name in productNames)
+            //var productNames = ListGenerators.ProductList
+            //    .Select(p => p.ProductName)
+            //    .ToList();
+            //Console.WriteLine("Product Names:");
+
+            //foreach (var name in productNames)
+            //{
+            //    Console.WriteLine(name);
+            //}
+
+
+            #endregion
+
+            #region p2: Produce a sequence of the uppercase and lowercase versions of each word in the original array (Anonymous Types).
+
+            string[] words = { "aPPLE", "BlUeBeRrY", "cHeRry" };
+
+            var wordCases = words
+                .Select(word => new
+                {
+                    Upper = word.ToUpper(),
+                    Lower = word.ToLower()
+                });
+
+            foreach (var wc in wordCases)
             {
-                Console.WriteLine(name);
+                Console.WriteLine($"Upper: {wc.Upper}, Lower: {wc.Lower}");
             }
+
 
 
             #endregion
