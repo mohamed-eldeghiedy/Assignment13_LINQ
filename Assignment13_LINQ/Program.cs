@@ -464,10 +464,34 @@ namespace Assignment13_LINQ
 
             #region p1:  Determine if any of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First) contain the substring 'ei'.
 
-            string[] words = File.ReadAllLines("dictionary_english.txt");
-            bool containsEi = words.Any(word => word.Contains("ei"));
-            Console.WriteLine($"Any word contains 'ei': {containsEi}");
+            //string[] words = File.ReadAllLines("dictionary_english.txt");
+            //bool containsEi = words.Any(word => word.Contains("ei"));
+            //Console.WriteLine($"Any word contains 'ei': {containsEi}");
 
+
+
+            #endregion
+
+            #region p2:  Return a grouped a list of products only for categories that have at least one product that is out of stock
+
+            var outOfStockCategories = ListGenerators.ProductList
+                .Where(p => p.UnitsInStock == 0)
+                .GroupBy(p => p.Category)
+                .Select(g => new
+                {
+                    Category = g.Key,
+                    Products = g.ToList()
+                })
+                .ToList();
+            Console.WriteLine("Categories with at least one out of stock product:");
+            foreach (var category in outOfStockCategories)
+            {
+                Console.WriteLine($"Category: {category.Category}");
+                foreach (var product in category.Products)
+                {
+                    Console.WriteLine($" - {product.ProductName} (Units in Stock: {product.UnitsInStock})");
+                }
+            }
 
 
             #endregion
