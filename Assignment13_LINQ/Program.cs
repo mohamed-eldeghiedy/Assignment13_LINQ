@@ -89,22 +89,30 @@ namespace Assignment13_LINQ
             #endregion
 
             #region p3: Return a list of categories and how many products each has
- 
-            var categories = ListGenerators.ProductList;
 
-            var categoryProductCounts = categories
-                .GroupBy(p => p.Category)
-                .Select(g => new
-                {
-                    Category = g.Key,
-                    ProductCount = g.Count()
-                })
-                .ToList();
-            foreach (var item in categoryProductCounts)
-            {
-                Console.WriteLine($"{item.Category} has {item.ProductCount} products.");
-            }
+            //var categories = ListGenerators.ProductList;
 
+            //var categoryProductCounts = categories
+            //    .GroupBy(p => p.Category)
+            //    .Select(g => new
+            //    {
+            //        Category = g.Key,
+            //        ProductCount = g.Count()
+            //    })
+            //    .ToList();
+            //foreach (var item in categoryProductCounts)
+            //{
+            //    Console.WriteLine($"{item.Category} has {item.ProductCount} products.");
+            //}
+
+
+            #endregion
+
+            #region p4: Get the total of the numbers in an array.
+            
+            int[] arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            var total = arr.Sum();
+            Console.WriteLine($"Total of the numbers in the array: {total}");
 
             #endregion
 
