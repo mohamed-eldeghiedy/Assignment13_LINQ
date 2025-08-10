@@ -109,11 +109,19 @@ namespace Assignment13_LINQ
             #endregion
 
             #region p4: Get the total of the numbers in an array.
-            
-            int[] arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-            var total = arr.Sum();
-            Console.WriteLine($"Total of the numbers in the array: {total}");
 
+            //int[] arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //var total = arr.Sum();
+            //Console.WriteLine($"Total of the numbers in the array: {total}");
+
+            #endregion
+
+            #region p5: Get the total number of characters of all words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+
+
+            string[] words = File.ReadAllLines("dictionary_english.txt");
+            int totalCharacters = words.Sum(word => word.Length);
+            Console.WriteLine($"Total number of characters in dictionary_english.txt: {totalCharacters}");
             #endregion
 
         }
