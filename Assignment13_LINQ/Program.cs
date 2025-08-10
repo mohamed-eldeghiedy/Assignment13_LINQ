@@ -135,12 +135,19 @@ namespace Assignment13_LINQ
 
             #region p7:Get the length of the longest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
 
-            string[] words = File.ReadAllLines("dictionary_english.txt");
-            int longestLength = words.Max(word => word.Length);
-            Console.WriteLine($"Length of the longest word: {longestLength}");
+            //string[] words = File.ReadAllLines("dictionary_english.txt");
+            //int longestLength = words.Max(word => word.Length);
+            //Console.WriteLine($"Length of the longest word: {longestLength}");
 
             #endregion
 
+            #region p8: Get the average length of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+
+            string[] words = File.ReadAllLines("dictionary_english.txt");
+            double averageLength = words.Average(word => word.Length);
+            Console.WriteLine($"Average length of the words: {averageLength}");
+
+            #endregion
         }
     }
 }
