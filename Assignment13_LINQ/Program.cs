@@ -612,20 +612,39 @@ namespace Assignment13_LINQ
 
             #region p2: Produce a sequence of the uppercase and lowercase versions of each word in the original array (Anonymous Types).
 
-            string[] words = { "aPPLE", "BlUeBeRrY", "cHeRry" };
+            //string[] words = { "aPPLE", "BlUeBeRrY", "cHeRry" };
 
-            var wordCases = words
-                .Select(word => new
+            //var wordCases = words
+            //    .Select(word => new
+            //    {
+            //        Upper = word.ToUpper(),
+            //        Lower = word.ToLower()
+            //    });
+
+            //foreach (var wc in wordCases)
+            //{
+            //    Console.WriteLine($"Upper: {wc.Upper}, Lower: {wc.Lower}");
+            //}
+
+
+
+            #endregion
+
+            #region p3:  Produce a sequence containing some properties of Products, including UnitPrice which is renamed to Price in the resulting type.
+            var productDetails = ListGenerators.ProductList
+                .Select(p => new
                 {
-                    Upper = word.ToUpper(),
-                    Lower = word.ToLower()
-                });
-
-            foreach (var wc in wordCases)
+                    p.ProductName,
+                    p.Category,
+                    Price = p.UnitPrice,
+                    p.UnitsInStock
+                })
+                .ToList();
+            Console.WriteLine("Product Details:");
+            foreach (var product in productDetails)
             {
-                Console.WriteLine($"Upper: {wc.Upper}, Lower: {wc.Lower}");
+                Console.WriteLine($"Name: {product.ProductName}, Category: {product.Category}, Price: ${product.Price}, Units in Stock: {product.UnitsInStock}");
             }
-
 
 
             #endregion
