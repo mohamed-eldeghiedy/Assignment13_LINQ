@@ -188,23 +188,40 @@ namespace Assignment13_LINQ
 
             #region p11: Get the products with the cheapest price in each category (Use Let)
 
-            var cheapestProducts =
-               from product in ListGenerators.ProductList
-               group product by product.Category into categoryGroup
-               let minPrice = categoryGroup.Min(p => p.UnitPrice)
-               from p in categoryGroup
-               where p.UnitPrice == minPrice
-               select new
-               {
-                   Category = categoryGroup.Key,
-                   ProductName = p.ProductName,
-                   UnitPrice = p.UnitPrice
-               };
-            foreach (var item in cheapestProducts)
-            {
-                Console.WriteLine($"Category: {item.Category}, Product: {item.ProductName}, Price: ${item.UnitPrice}");
-            }
+            //var cheapestProducts =
+            //   from product in ListGenerators.ProductList
+            //   group product by product.Category into categoryGroup
+            //   let minPrice = categoryGroup.Min(p => p.UnitPrice)
+            //   from p in categoryGroup
+            //   where p.UnitPrice == minPrice
+            //   select new
+            //   {
+            //       Category = categoryGroup.Key,
+            //       ProductName = p.ProductName,
+            //       UnitPrice = p.UnitPrice
+            //   };
+            //foreach (var item in cheapestProducts)
+            //{
+            //    Console.WriteLine($"Category: {item.Category}, Product: {item.ProductName}, Price: ${item.UnitPrice}");
+            //}
 
+
+            #endregion
+
+            #region p12: Get the most expensive price among each category's products.
+
+            var mostExpensivePrices = ListGenerators.ProductList
+                .GroupBy(p => p.Category)
+                .Select(g => new
+                {
+                    Category = g.Key,
+                    MostExpensivePrice = g.Max(p => p.UnitPrice)
+                })
+                .ToList();
+            foreach (var item in mostExpensivePrices) 
+            {
+                Console.WriteLine($"Most expensive price in {item.Category} category: ${item.MostExpensivePrice}");
+            }
 
             #endregion
 
