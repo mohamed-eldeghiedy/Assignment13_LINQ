@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace ASSLINQ
+namespace Assignment13_LINQ
 {
     class Product
     {
@@ -20,6 +20,11 @@ namespace ASSLINQ
             => $"ProductID:{ProductID},ProductName:{ProductName},Category{Category},UnitPrice:{UnitPrice},UnitsInStock:{UnitsInStock}";
 
     }
+
+
+
+
+
     class Customer
     {
         public string CustomerID { get; set; }
@@ -234,27 +239,29 @@ namespace ASSLINQ
             };
 
             CustomerList = (from e in XDocument.Load("customers.xml").Root.Elements("customer")
-                           select new Customer 
-                           {
-                               CustomerID = (string) e.Element("id"),
-                               CustomerName = (string)e.Element("name"),
-                               Address = (string)e.Element("address"),
-                               City = (string)e.Element("city"),
-                               Region = (string)e.Element("region"),
-                               PostalCode = (string)e.Element("postalcode"),
-                               Country = (string)e.Element("country"),
-                               Phone = (string)e.Element("phone"),
-                               Fax = (string)e.Element("fax"),
-                               Orders = (
-                                    from o in e.Elements("orders").Elements("order")
-                                    select new Order
-                                    {
-                                        OrderID = (int)o.Element("id"),
-                                        OrderDate = (DateTime)o.Element("orderdate"),
-                                        Total = (decimal)o.Element("total")
-                                    }).ToArray()
-                           }).ToList();
+                            select new Customer
+                            {
+                                CustomerID = (string)e.Element("id"),
+                                CustomerName = (string)e.Element("name"),
+                                Address = (string)e.Element("address"),
+                                City = (string)e.Element("city"),
+                                Region = (string)e.Element("region"),
+                                PostalCode = (string)e.Element("postalcode"),
+                                Country = (string)e.Element("country"),
+                                Phone = (string)e.Element("phone"),
+                                Fax = (string)e.Element("fax"),
+                                Orders = (
+                                     from o in e.Elements("orders").Elements("order")
+                                     select new Order
+                                     {
+                                         OrderID = (int)o.Element("id"),
+                                         OrderDate = (DateTime)o.Element("orderdate"),
+                                         Total = (decimal)o.Element("total")
+                                     }).ToArray()
+                            }).ToList();
 
         }
+   
     }
 }
+    
