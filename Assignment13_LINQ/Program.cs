@@ -443,21 +443,34 @@ namespace Assignment13_LINQ
             #endregion
 
             #region p5: Get the elements of the array starting from the first element less than its position.
-            
-            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-            var result = numbers
-                .SkipWhile((number, index) => number >= index)
-                .ToList();
-            Console.WriteLine("Elements starting from the first less than its position:");
-            foreach (var number in result)
-            {
-                Console.WriteLine(number);
-            }
+
+            //int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //var result = numbers
+            //    .SkipWhile((number, index) => number >= index)
+            //    .ToList();
+            //Console.WriteLine("Elements starting from the first less than its position:");
+            //foreach (var number in result)
+            //{
+            //    Console.WriteLine(number);
+            //}
 
 
 
             #endregion
 
+
+
+            //  Quantifiers
+
+            #region p1:  Determine if any of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First) contain the substring 'ei'.
+
+            string[] words = File.ReadAllLines("dictionary_english.txt");
+            bool containsEi = words.Any(word => word.Contains("ei"));
+            Console.WriteLine($"Any word contains 'ei': {containsEi}");
+
+
+
+            #endregion
 
         }
     }
