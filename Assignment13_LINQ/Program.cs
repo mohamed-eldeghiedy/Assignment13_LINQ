@@ -61,10 +61,30 @@ namespace Assignment13_LINQ
 
             #region p1:  Uses Count to get the number of odd numbers in the array
 
-            int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
 
-            var oddCount = Arr.Count(n => n % 2 != 0);
-            Console.WriteLine($"Number of odd numbers in the array: {oddCount}");
+            //var oddCount = Arr.Count(n => n % 2 != 0);
+            //Console.WriteLine($"Number of odd numbers in the array: {oddCount}");
+
+            #endregion
+
+            #region p2: Return a list of customers and how many orders each has.
+
+            var customers = ListGenerators.CustomerList;
+
+            var customerOrderCounts = customers
+                .Select(c => new
+                {
+                    CustomerName = c.CustomerName,
+                    OrderCount = c.Orders.Count()
+                })
+                .ToList();
+
+            foreach(var item in customerOrderCounts )
+            {
+                Console.WriteLine($"{item.CustomerName} has {item.OrderCount} orders.");
+            }
+
 
             #endregion
 
