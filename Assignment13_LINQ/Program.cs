@@ -37,23 +37,37 @@ namespace Assignment13_LINQ
 
             #region p3: Retrieve the second number greater than 5 
 
-            int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
 
-            var SecondNumberGreaterThan5 = Arr
-                .Where(n => n > 5)
-                .Skip(1)
-                .FirstOrDefault();
-            if (SecondNumberGreaterThan5 != 0)
-            {
-                Console.WriteLine($"Second number greater than 5 is: {SecondNumberGreaterThan5}");
-            }
-            else
-            {
-                Console.WriteLine("There is no second number greater than 5.");
-            }
+            //var SecondNumberGreaterThan5 = Arr
+            //    .Where(n => n > 5)
+            //    .Skip(1)
+            //    .FirstOrDefault();
+            //if (SecondNumberGreaterThan5 != 0)
+            //{
+            //    Console.WriteLine($"Second number greater than 5 is: {SecondNumberGreaterThan5}");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("There is no second number greater than 5.");
+            //}
 
 
             #endregion
+
+
+
+            // Aggregate Operators
+
+            #region p1:  Uses Count to get the number of odd numbers in the array
+
+            int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+            var oddCount = Arr.Count(n => n % 2 != 0);
+            Console.WriteLine($"Number of odd numbers in the array: {oddCount}");
+
+            #endregion
+
         }
     }
 }
