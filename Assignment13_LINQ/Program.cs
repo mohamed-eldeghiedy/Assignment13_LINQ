@@ -308,6 +308,29 @@ namespace Assignment13_LINQ
 
             #region p3: Create one sequence that contains the common first letter from both product and customer names.
 
+            //var productFirstLetters = ListGenerators.ProductList
+            //    .Select(p => p.ProductName[0])
+            //    .Distinct();
+
+            //var customerFirstLetters = ListGenerators.CustomerList
+            //    .Select(c => c.CustomerName[0])
+            //    .Distinct();
+
+            //var commonFirstLetters = productFirstLetters
+            //    .Intersect(customerFirstLetters)
+            //    .OrderBy(c => c); 
+
+            //Console.WriteLine("Common first letters from products and customers:");
+
+            //foreach (var letter in commonFirstLetters)
+            //{
+            //    Console.WriteLine(letter);
+            //}
+
+            #endregion
+
+            #region p4:  Create one sequence that contains the first letters of product names that are not also first letters of customer names.
+
             var productFirstLetters = ListGenerators.ProductList
                 .Select(p => p.ProductName[0])
                 .Distinct();
@@ -316,16 +339,17 @@ namespace Assignment13_LINQ
                 .Select(c => c.CustomerName[0])
                 .Distinct();
 
-            var commonFirstLetters = productFirstLetters
-                .Intersect(customerFirstLetters)
-                .OrderBy(c => c); 
+            var uniqueProductLetters = productFirstLetters
+                .Except(customerFirstLetters)
+                .OrderBy(c => c); // optional sorting
 
-            Console.WriteLine("Common first letters from products and customers:");
+            Console.WriteLine("Product name first letters NOT in customer name first letters:");
 
-            foreach (var letter in commonFirstLetters)
+            foreach (var letter in uniqueProductLetters)
             {
                 Console.WriteLine(letter);
             }
+
 
             #endregion
 
