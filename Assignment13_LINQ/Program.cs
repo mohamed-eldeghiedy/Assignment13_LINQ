@@ -427,12 +427,28 @@ namespace Assignment13_LINQ
             #endregion
 
             #region p4: Get the elements of the array starting from the first element divisible by 3.
+
+            //int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //var result = numbers
+            //    .SkipWhile(number => number % 3 != 0)
+            //    .ToList();
+            //Console.WriteLine("Elements starting from the first divisible by 3:");
+            //foreach (var number in result)
+            //{
+            //    Console.WriteLine(number);
+            //}
+
+
+
+            #endregion
+
+            #region p5: Get the elements of the array starting from the first element less than its position.
             
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
             var result = numbers
-                .SkipWhile(number => number % 3 != 0)
+                .SkipWhile((number, index) => number >= index)
                 .ToList();
-            Console.WriteLine("Elements starting from the first divisible by 3:");
+            Console.WriteLine("Elements starting from the first less than its position:");
             foreach (var number in result)
             {
                 Console.WriteLine(number);
