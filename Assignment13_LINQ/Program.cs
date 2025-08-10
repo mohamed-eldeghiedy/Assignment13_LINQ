@@ -397,15 +397,30 @@ namespace Assignment13_LINQ
             #endregion
 
             #region p2:  Get all but the first 2 orders from customers in Washington.
-            var ordersFromWashington = ListGenerators.CustomerList
-                .Where(c => c.Region == "WA")
-                .SelectMany(c => c.Orders)
-                .Skip(2)
+            //var ordersFromWashington = ListGenerators.CustomerList
+            //    .Where(c => c.Region == "WA")
+            //    .SelectMany(c => c.Orders)
+            //    .Skip(2)
+            //    .ToList();
+            //Console.WriteLine("All but the first 2 orders from customers in Washington:");
+            //foreach (var order in ordersFromWashington)
+            //{
+            //    Console.WriteLine(order);
+            //}
+
+
+            #endregion
+
+            #region p3:  Return elements starting from the beginning of the array until a number is hit that is less than its position in the array.
+           
+            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            var result = numbers
+                .TakeWhile((number, index) => number >= index)
                 .ToList();
-            Console.WriteLine("All but the first 2 orders from customers in Washington:");
-            foreach (var order in ordersFromWashington)
+            Console.WriteLine("Elements until a number is less than its position:");
+            foreach (var number in result)
             {
-                Console.WriteLine(order);
+                Console.WriteLine(number);
             }
 
 
