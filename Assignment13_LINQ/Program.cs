@@ -331,26 +331,49 @@ namespace Assignment13_LINQ
 
             #region p4:  Create one sequence that contains the first letters of product names that are not also first letters of customer names.
 
-            var productFirstLetters = ListGenerators.ProductList
-                .Select(p => p.ProductName[0])
-                .Distinct();
+            //var productFirstLetters = ListGenerators.ProductList
+            //    .Select(p => p.ProductName[0])
+            //    .Distinct();
 
-            var customerFirstLetters = ListGenerators.CustomerList
-                .Select(c => c.CustomerName[0])
-                .Distinct();
+            //var customerFirstLetters = ListGenerators.CustomerList
+            //    .Select(c => c.CustomerName[0])
+            //    .Distinct();
 
-            var uniqueProductLetters = productFirstLetters
-                .Except(customerFirstLetters)
-                .OrderBy(c => c); // optional sorting
+            //var uniqueProductLetters = productFirstLetters
+            //    .Except(customerFirstLetters)
+            //    .OrderBy(c => c);
 
-            Console.WriteLine("Product name first letters NOT in customer name first letters:");
+            //Console.WriteLine("Product name first letters NOT in customer name first letters:");
 
-            foreach (var letter in uniqueProductLetters)
+            //foreach (var letter in uniqueProductLetters)
+            //{
+            //    Console.WriteLine(letter);
+            //}
+
+
+            #endregion
+
+            #region p5: Create one sequence that contains the last Three Characters in each name of all customers and products, including any duplicates
+
+
+            var productLastThree = ListGenerators.ProductList
+                .Select(p => p.ProductName.Length >= 3
+                             ? p.ProductName.Substring(p.ProductName.Length - 3)
+                             : p.ProductName);
+
+            var customerLastThree = ListGenerators.CustomerList
+                .Select(c => c.CustomerName.Length >= 3
+                             ? c.CustomerName.Substring(c.CustomerName.Length - 3)
+                             : c.CustomerName);
+
+            var combinedLastThree = productLastThree.Concat(customerLastThree);
+
+            Console.WriteLine("Last three characters from all product and customer names:");
+
+            foreach (var str in combinedLastThree)
             {
-                Console.WriteLine(letter);
+                Console.WriteLine(str);
             }
-
-
             #endregion
 
         }
