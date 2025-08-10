@@ -528,24 +528,52 @@ namespace Assignment13_LINQ
 
             #region p1: Use group by to partition a list of numbers by their remainder when divided by 5
 
-            List<int> numbers = new List<int> {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+            //List<int> numbers = new List<int> {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 
-            var grouped = from num in numbers
-                          group num by num % 5 into g
-                          orderby g.Key
-                          select g;
+            //var grouped = from num in numbers
+            //              group num by num % 5 into g
+            //              orderby g.Key
+            //              select g;
 
-            foreach (var group in grouped)
+            //foreach (var group in grouped)
+            //{
+            //    Console.WriteLine($"Numbers with a remainder of {group.Key} when divided by 5:");
+            //    foreach (var num in group)
+            //    {
+            //        Console.WriteLine(num);
+            //    }
+            //    Console.WriteLine();
+            //}
+
+            #endregion
+
+            #region p2: Uses group by to partition a list of words by their first letter. Use dictionary_english.txt for Input
+
+
+            string[] words = File.ReadAllLines("dictionary_english.txt");
+
+            
+            var groupedWords = from word in words
+                               where !string.IsNullOrWhiteSpace(word)
+                               group word by char.ToUpper(word[0]) into g
+                               orderby g.Key
+                               select g;
+
+            
+            foreach (var group in groupedWords)
             {
-                Console.WriteLine($"Numbers with a remainder of {group.Key} when divided by 5:");
-                foreach (var num in group)
+                Console.WriteLine($"Words starting with '{group.Key}':");
+                foreach (var word in group)
                 {
-                    Console.WriteLine(num);
+                    Console.WriteLine($"  {word}");
                 }
                 Console.WriteLine();
             }
 
+
             #endregion
+
+
 
         }
     }
