@@ -70,19 +70,39 @@ namespace Assignment13_LINQ
 
             #region p2: Return a list of customers and how many orders each has.
 
-            var customers = ListGenerators.CustomerList;
+            ///*var customers = ListGenerators.CustomerList;
 
-            var customerOrderCounts = customers
-                .Select(c => new
+            //var customerOrderCounts = customers
+            //    .Select(c => new
+            //    {
+            //        CustomerName = c.CustomerName,
+            //        OrderCount = c.Orders.Count()
+            //    })
+            //    .ToList();
+
+            //foreach(var item in customerOrderCounts )
+            //{
+            //    Console.WriteLine($"{item.CustomerName} has {item.OrderCount} orders.");
+            //}*/
+
+
+            #endregion
+
+            #region p3: Return a list of categories and how many products each has
+ 
+            var categories = ListGenerators.ProductList;
+
+            var categoryProductCounts = categories
+                .GroupBy(p => p.Category)
+                .Select(g => new
                 {
-                    CustomerName = c.CustomerName,
-                    OrderCount = c.Orders.Count()
+                    Category = g.Key,
+                    ProductCount = g.Count()
                 })
                 .ToList();
-
-            foreach(var item in customerOrderCounts )
+            foreach (var item in categoryProductCounts)
             {
-                Console.WriteLine($"{item.CustomerName} has {item.OrderCount} orders.");
+                Console.WriteLine($"{item.Category} has {item.ProductCount} products.");
             }
 
 
