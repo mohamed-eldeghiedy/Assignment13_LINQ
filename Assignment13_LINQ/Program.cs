@@ -382,12 +382,27 @@ namespace Assignment13_LINQ
 
             #region p1: Get the first 3 orders from customers in Washington
 
+            //var ordersFromWashington = ListGenerators.CustomerList
+            //    .Where(c => c.Region == "WA")
+            //    .SelectMany(c => c.Orders)
+            //    .Take(3)
+            //    .ToList();
+            //Console.WriteLine("First 3 orders from customers in Washington:");
+            //foreach (var order in ordersFromWashington)
+            //{
+            //    Console.WriteLine(order);
+            //}
+
+
+            #endregion
+
+            #region p2:  Get all but the first 2 orders from customers in Washington.
             var ordersFromWashington = ListGenerators.CustomerList
                 .Where(c => c.Region == "WA")
                 .SelectMany(c => c.Orders)
-                .Take(3)
+                .Skip(2)
                 .ToList();
-            Console.WriteLine("First 3 orders from customers in Washington:");
+            Console.WriteLine("All but the first 2 orders from customers in Washington:");
             foreach (var order in ordersFromWashington)
             {
                 Console.WriteLine(order);
