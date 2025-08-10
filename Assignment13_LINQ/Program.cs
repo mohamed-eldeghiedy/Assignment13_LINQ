@@ -271,17 +271,38 @@ namespace Assignment13_LINQ
 
             #region p1: Find the unique Category names from Product List
 
-            var uniqueCategories = ListGenerators.ProductList
-                .Select(p => p.Category)
+            //var uniqueCategories = ListGenerators.ProductList
+            //    .Select(p => p.Category)
+            //    .Distinct()
+            //    .OrderBy(c => c); 
+
+            //foreach (var category in uniqueCategories)
+            //{
+            //    Console.WriteLine(category);
+            //}
+
+
+
+            #endregion
+
+            #region p2:  Produce a Sequence containing the unique first letter from both product and customer names.
+
+            var productFirstLetters = ListGenerators.ProductList
+                .Select(p => p.ProductName[0]);
+
+            var customerFirstLetters = ListGenerators.CustomerList
+                .Select(c => c.CustomerName[0]);
+
+            var uniqueFirstLetters = productFirstLetters
+                .Concat(customerFirstLetters)
                 .Distinct()
-                .OrderBy(c => c); 
+                .OrderBy(c => c);
+            Console.WriteLine("Unique first letters from products and customers:");
 
-            foreach (var category in uniqueCategories)
+            foreach (var letter in uniqueFirstLetters)
             {
-                Console.WriteLine(category);
+                Console.WriteLine(letter);
             }
-
-
 
             #endregion
         }
