@@ -287,24 +287,48 @@ namespace Assignment13_LINQ
 
             #region p2:  Produce a Sequence containing the unique first letter from both product and customer names.
 
+            //var productFirstLetters = ListGenerators.ProductList
+            //    .Select(p => p.ProductName[0]);
+
+            //var customerFirstLetters = ListGenerators.CustomerList
+            //    .Select(c => c.CustomerName[0]);
+
+            //var uniqueFirstLetters = productFirstLetters
+            //    .Concat(customerFirstLetters)
+            //    .Distinct()
+            //    .OrderBy(c => c);
+            //Console.WriteLine("Unique first letters from products and customers:");
+
+            //foreach (var letter in uniqueFirstLetters)
+            //{
+            //    Console.WriteLine(letter);
+            //}
+
+            #endregion
+
+            #region p3: Create one sequence that contains the common first letter from both product and customer names.
+
             var productFirstLetters = ListGenerators.ProductList
-                .Select(p => p.ProductName[0]);
+                .Select(p => p.ProductName[0])
+                .Distinct();
 
             var customerFirstLetters = ListGenerators.CustomerList
-                .Select(c => c.CustomerName[0]);
+                .Select(c => c.CustomerName[0])
+                .Distinct();
 
-            var uniqueFirstLetters = productFirstLetters
-                .Concat(customerFirstLetters)
-                .Distinct()
-                .OrderBy(c => c);
-            Console.WriteLine("Unique first letters from products and customers:");
+            var commonFirstLetters = productFirstLetters
+                .Intersect(customerFirstLetters)
+                .OrderBy(c => c); 
 
-            foreach (var letter in uniqueFirstLetters)
+            Console.WriteLine("Common first letters from products and customers:");
+
+            foreach (var letter in commonFirstLetters)
             {
                 Console.WriteLine(letter);
             }
 
             #endregion
+
         }
     }
 }
