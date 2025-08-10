@@ -631,25 +631,41 @@ namespace Assignment13_LINQ
             #endregion
 
             #region p3:  Produce a sequence containing some properties of Products, including UnitPrice which is renamed to Price in the resulting type.
-            var productDetails = ListGenerators.ProductList
-                .Select(p => new
-                {
-                    p.ProductName,
-                    p.Category,
-                    Price = p.UnitPrice,
-                    p.UnitsInStock
-                })
-                .ToList();
-            Console.WriteLine("Product Details:");
-            foreach (var product in productDetails)
-            {
-                Console.WriteLine($"Name: {product.ProductName}, Category: {product.Category}, Price: ${product.Price}, Units in Stock: {product.UnitsInStock}");
-            }
+            //var productDetails = ListGenerators.ProductList
+            //    .Select(p => new
+            //    {
+            //        p.ProductName,
+            //        p.Category,
+            //        Price = p.UnitPrice,
+            //        p.UnitsInStock
+            //    })
+            //    .ToList();
+            //Console.WriteLine("Product Details:");
+            //foreach (var product in productDetails)
+            //{
+            //    Console.WriteLine($"Name: {product.ProductName}, Category: {product.Category}, Price: ${product.Price}, Units in Stock: {product.UnitsInStock}");
+            //}
 
 
             #endregion
 
+            #region p4: Determine if the value of int in an array match their position in the array.
+           
+            int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            var result = Arr
+           .Select((value, index) => new
+           {
+               Number = value,
+               InPlace = value == index
+           });
+            Console.WriteLine("Numbers : In-place?");
+            foreach (var item in result)
+            {
+                Console.WriteLine($"Number: {item.Number},  {item.InPlace}");
+            }
 
+
+            #endregion
         }
     }
 }
