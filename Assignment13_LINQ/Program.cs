@@ -356,25 +356,46 @@ namespace Assignment13_LINQ
             #region p5: Create one sequence that contains the last Three Characters in each name of all customers and products, including any duplicates
 
 
-            var productLastThree = ListGenerators.ProductList
-                .Select(p => p.ProductName.Length >= 3
-                             ? p.ProductName.Substring(p.ProductName.Length - 3)
-                             : p.ProductName);
+            //var productLastThree = ListGenerators.ProductList
+            //    .Select(p => p.ProductName.Length >= 3
+            //                 ? p.ProductName.Substring(p.ProductName.Length - 3)
+            //                 : p.ProductName);
 
-            var customerLastThree = ListGenerators.CustomerList
-                .Select(c => c.CustomerName.Length >= 3
-                             ? c.CustomerName.Substring(c.CustomerName.Length - 3)
-                             : c.CustomerName);
+            //var customerLastThree = ListGenerators.CustomerList
+            //    .Select(c => c.CustomerName.Length >= 3
+            //                 ? c.CustomerName.Substring(c.CustomerName.Length - 3)
+            //                 : c.CustomerName);
 
-            var combinedLastThree = productLastThree.Concat(customerLastThree);
+            //var combinedLastThree = productLastThree.Concat(customerLastThree);
 
-            Console.WriteLine("Last three characters from all product and customer names:");
+            //Console.WriteLine("Last three characters from all product and customer names:");
 
-            foreach (var str in combinedLastThree)
-            {
-                Console.WriteLine(str);
-            }
+            //foreach (var str in combinedLastThree)
+            //{
+            //    Console.WriteLine(str);
+            //}
             #endregion
+
+
+
+            //Partitioning Operators
+
+            #region p1: Get the first 3 orders from customers in Washington
+
+            var ordersFromWashington = ListGenerators.CustomerList
+                .Where(c => c.Region == "WA")
+                .SelectMany(c => c.Orders)
+                .Take(3)
+                .ToList();
+            Console.WriteLine("First 3 orders from customers in Washington:");
+            foreach (var order in ordersFromWashington)
+            {
+                Console.WriteLine(order);
+            }
+
+
+            #endregion
+
 
         }
     }
