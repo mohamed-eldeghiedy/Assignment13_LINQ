@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Collections.Generic;
 namespace Assignment13_LINQ
 {
     internal class Program
@@ -498,26 +499,51 @@ namespace Assignment13_LINQ
 
             #region p3: Return a grouped a list of products only for categories that have all of their products in stock.
 
-            var inStockCategories = ListGenerators.ProductList
-                .GroupBy(p => p.Category)
-                .Where(g => g.All(p => p.UnitsInStock > 0))
-                .Select(g => new
-                {
-                    Category = g.Key,
-                    Products = g.ToList()
-                })
-                .ToList();  
-            Console.WriteLine("Categories with all products in stock:");
-                
-            foreach (var category in inStockCategories)
-            {
-                Console.WriteLine($"Category: {category.Category}");
-                foreach (var product in category.Products)
-                {
-                    Console.WriteLine($" - {product.ProductName} (Units in Stock: {product.UnitsInStock})");
-                }
-            }
+            //var inStockCategories = ListGenerators.ProductList
+            //    .GroupBy(p => p.Category)
+            //    .Where(g => g.All(p => p.UnitsInStock > 0))
+            //    .Select(g => new
+            //    {
+            //        Category = g.Key,
+            //        Products = g.ToList()
+            //    })
+            //    .ToList();  
+            //Console.WriteLine("Categories with all products in stock:");
 
+            //foreach (var category in inStockCategories)
+            //{
+            //    Console.WriteLine($"Category: {category.Category}");
+            //    foreach (var product in category.Products)
+            //    {
+            //        Console.WriteLine($" - {product.ProductName} (Units in Stock: {product.UnitsInStock})");
+            //    }
+            //}
+
+
+            #endregion
+
+
+
+            // Grouping Operators
+
+            #region p1: Use group by to partition a list of numbers by their remainder when divided by 5
+
+            List<int> numbers = new List<int> {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+
+            var grouped = from num in numbers
+                          group num by num % 5 into g
+                          orderby g.Key
+                          select g;
+
+            foreach (var group in grouped)
+            {
+                Console.WriteLine($"Numbers with a remainder of {group.Key} when divided by 5:");
+                foreach (var num in group)
+                {
+                    Console.WriteLine(num);
+                }
+                Console.WriteLine();
+            }
 
             #endregion
 
