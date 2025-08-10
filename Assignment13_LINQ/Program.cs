@@ -550,27 +550,46 @@ namespace Assignment13_LINQ
             #region p2: Uses group by to partition a list of words by their first letter. Use dictionary_english.txt for Input
 
 
-            string[] words = File.ReadAllLines("dictionary_english.txt");
+            //string[] words = File.ReadAllLines("dictionary_english.txt");
 
-            
-            var groupedWords = from word in words
-                               where !string.IsNullOrWhiteSpace(word)
-                               group word by char.ToUpper(word[0]) into g
-                               orderby g.Key
-                               select g;
 
-            
-            foreach (var group in groupedWords)
+            //var groupedWords = from word in words
+            //                   where !string.IsNullOrWhiteSpace(word)
+            //                   group word by char.ToUpper(word[0]) into g
+            //                   orderby g.Key
+            //                   select g;
+
+
+            //foreach (var group in groupedWords)
+            //{
+            //    Console.WriteLine($"Words starting with '{group.Key}':");
+            //    foreach (var word in group)
+            //    {
+            //        Console.WriteLine($"  {word}");
+            //    }
+            //    Console.WriteLine();
+            //}
+
+
+            #endregion
+
+            #region  p3: Use Group By with a custom comparer that matches words that are consists of the same Characters Together 
+
+
+            String[] Arr = { "from", "salt", "earn", " last", "near", "form" };
+            var groupedAnagrams = Arr
+                 .Select(word => word.Trim()) 
+                 .GroupBy(word => String.Concat(word.OrderBy(c => c))) 
+                 .ToList();
+
+            foreach (var group in groupedAnagrams)
             {
-                Console.WriteLine($"Words starting with '{group.Key}':");
                 foreach (var word in group)
                 {
-                    Console.WriteLine($"  {word}");
+                    Console.WriteLine(word);
                 }
-                Console.WriteLine();
+                Console.WriteLine(".....");
             }
-
-
             #endregion
 
 
