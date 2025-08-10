@@ -143,11 +143,31 @@ namespace Assignment13_LINQ
 
             #region p8: Get the average length of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
 
-            string[] words = File.ReadAllLines("dictionary_english.txt");
-            double averageLength = words.Average(word => word.Length);
-            Console.WriteLine($"Average length of the words: {averageLength}");
+            //string[] words = File.ReadAllLines("dictionary_english.txt");
+            //double averageLength = words.Average(word => word.Length);
+            //Console.WriteLine($"Average length of the words: {averageLength}");
 
             #endregion
+
+            #region p9:  Get the total units in stock for each product category.
+
+            var result = ListGenerators.ProductList
+                .GroupBy(p => p.Category)
+                .Select(g => new
+                {
+                    Category = g.Key,
+                    TotalUnitsInStock = g.Sum(p => p.UnitsInStock)
+                })
+                .ToList();
+            foreach (var item in result)
+            {
+                Console.WriteLine($"{item.Category} has a total of {item.TotalUnitsInStock} units in stock.");
+            }
+
+
+            #endregion
+
+
         }
     }
 }
