@@ -474,17 +474,42 @@ namespace Assignment13_LINQ
 
             #region p2:  Return a grouped a list of products only for categories that have at least one product that is out of stock
 
-            var outOfStockCategories = ListGenerators.ProductList
-                .Where(p => p.UnitsInStock == 0)
+            //var outOfStockCategories = ListGenerators.ProductList
+            //    .Where(p => p.UnitsInStock == 0)
+            //    .GroupBy(p => p.Category)
+            //    .Select(g => new
+            //    {
+            //        Category = g.Key,
+            //        Products = g.ToList()
+            //    })
+            //    .ToList();
+            //Console.WriteLine("Categories with at least one out of stock product:");
+            //foreach (var category in outOfStockCategories)
+            //{
+            //    Console.WriteLine($"Category: {category.Category}");
+            //    foreach (var product in category.Products)
+            //    {
+            //        Console.WriteLine($" - {product.ProductName} (Units in Stock: {product.UnitsInStock})");
+            //    }
+            //}
+
+
+            #endregion
+
+            #region p3: Return a grouped a list of products only for categories that have all of their products in stock.
+
+            var inStockCategories = ListGenerators.ProductList
                 .GroupBy(p => p.Category)
+                .Where(g => g.All(p => p.UnitsInStock > 0))
                 .Select(g => new
                 {
                     Category = g.Key,
                     Products = g.ToList()
                 })
-                .ToList();
-            Console.WriteLine("Categories with at least one out of stock product:");
-            foreach (var category in outOfStockCategories)
+                .ToList();  
+            Console.WriteLine("Categories with all products in stock:");
+                
+            foreach (var category in inStockCategories)
             {
                 Console.WriteLine($"Category: {category.Category}");
                 foreach (var product in category.Products)
