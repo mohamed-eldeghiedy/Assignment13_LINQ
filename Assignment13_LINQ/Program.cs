@@ -576,22 +576,39 @@ namespace Assignment13_LINQ
             #region  p3: Use Group By with a custom comparer that matches words that are consists of the same Characters Together 
 
 
-            String[] Arr = { "from", "salt", "earn", " last", "near", "form" };
-            var groupedAnagrams = Arr
-                 .Select(word => word.Trim()) 
-                 .GroupBy(word => String.Concat(word.OrderBy(c => c))) 
-                 .ToList();
+            //String[] Arr = { "from", "salt", "earn", " last", "near", "form" };
+            //var groupedAnagrams = Arr
+            //     .Select(word => word.Trim()) 
+            //     .GroupBy(word => String.Concat(word.OrderBy(c => c))) 
+            //     .ToList();
 
-            foreach (var group in groupedAnagrams)
-            {
-                foreach (var word in group)
-                {
-                    Console.WriteLine(word);
-                }
-                Console.WriteLine(".....");
-            }
+            //foreach (var group in groupedAnagrams)
+            //{
+            //    foreach (var word in group)
+            //    {
+            //        Console.WriteLine(word);
+            //    }
+            //    Console.WriteLine(".....");
+            //}
             #endregion
 
+
+
+            // Transformation Operators
+
+            #region p1: Return a sequence of just the names of a list of products.
+            var productNames = ListGenerators.ProductList
+                .Select(p => p.ProductName)
+                .ToList();
+            Console.WriteLine("Product Names:");
+                
+            foreach (var name in productNames)
+            {
+                Console.WriteLine(name);
+            }
+
+
+            #endregion
 
 
         }
