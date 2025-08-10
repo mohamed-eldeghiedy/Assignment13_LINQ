@@ -227,25 +227,45 @@ namespace Assignment13_LINQ
 
             #region p13: Get the products with the most expensive price in each category.
 
-            var mostExpensiveProducts =
-                from product in ListGenerators.ProductList
-                group product by product.Category into categoryGroup
-                let maxPrice = categoryGroup.Max(p => p.UnitPrice)
-                from p in categoryGroup
-                where p.UnitPrice == maxPrice
-                select new
+            //var mostExpensiveProducts =
+            //    from product in ListGenerators.ProductList
+            //    group product by product.Category into categoryGroup
+            //    let maxPrice = categoryGroup.Max(p => p.UnitPrice)
+            //    from p in categoryGroup
+            //    where p.UnitPrice == maxPrice
+            //    select new
+            //    {
+            //        Category = categoryGroup.Key,
+            //        ProductName = p.ProductName,
+            //        UnitPrice = p.UnitPrice
+            //    };
+            //foreach (var item in mostExpensiveProducts)
+            //{
+            //    Console.WriteLine($"Category: {item.Category}, Product: {item.ProductName}, Price: ${item.UnitPrice}");
+            //}
+
+
+            #endregion
+
+            #region p14: Get the average price of each category's products.
+
+            var averagePrices = ListGenerators.ProductList
+                .GroupBy(p => p.Category)
+                .Select(g => new
                 {
-                    Category = categoryGroup.Key,
-                    ProductName = p.ProductName,
-                    UnitPrice = p.UnitPrice
-                };
-            foreach (var item in mostExpensiveProducts)
+                    Category = g.Key,
+                    AveragePrice = g.Average(p => p.UnitPrice)
+                })
+                .ToList();
+            foreach (var item in averagePrices)
             {
-                Console.WriteLine($"Category: {item.Category}, Product: {item.ProductName}, Price: ${item.UnitPrice}");
+                Console.WriteLine($"Average price in {item.Category} category: ${item.AveragePrice}");
             }
 
 
             #endregion
+
+
         }
     }
 }
